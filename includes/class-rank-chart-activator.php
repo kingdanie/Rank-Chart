@@ -210,7 +210,7 @@ class Rank_Chart_Activator {
     public function wp_rank_chart_tbl(){
         global $wpdb;
 
-        return $wpdb->prefix ."rank_chart_tbl"; // $wpdb->prefix => wp_
+        return $wpdb->prefix . CR_PLUGIN_TABLE_NAME; // $wpdb->prefix => wp_
     }
 
 }
