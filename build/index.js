@@ -20,21 +20,94 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+// const data = [
+// 	{
+// 		name: "Page A",
+// 		uv: 4000,
+// 		pv: 2400,
+// 		amt: 2400,
+// 	},
+// 	{
+// 		name: "Page B",
+// 		uv: 3000,
+// 		pv: 1398,
+// 		amt: 2210,
+// 	},
+// 	{
+// 		name: "Page C",
+// 		uv: 2000,
+// 		pv: 9800,
+// 		amt: 2290,
+// 	},
+// 	{
+// 		name: "Page D",
+// 		uv: 2780,
+// 		pv: 3908,
+// 		amt: 2000,
+// 	},
+// 	{
+// 		name: "Page E",
+// 		uv: 1890,
+// 		pv: 4800,
+// 		amt: 2181,
+// 	},
+// 	{
+// 		name: "Page F",
+// 		uv: 2390,
+// 		pv: 3800,
+// 		amt: 2500,
+// 	},
+// 	{
+// 		name: "Page G",
+// 		uv: 3490,
+// 		pv: 4300,
+// 		amt: 2100,
+// 	},
+// ];
+
 function App() {
+  const [data, setData] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+  const [chartDuration, setChartDuration] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(7);
+  const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`/rankchart/wp-json/cr-plugin/v1/data?days=${chartDuration}`);
+      const data = await response.json();
+      setData(data);
+    } catch (error) {
+      console.error("Error fetching Data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const handleDurationChange = e => {
+    const duration = Number(e.target.value);
+    setChartDuration(duration);
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    fetchData();
+  }, [chartDuration]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "cr-chart-widget"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "cr-chart-heading"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Graph Widget"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
     name: "days",
-    id: "days"
+    id: "days",
+    onChange: handleDurationChange
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: "7"
   }, "Last 7 days"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: "15"
   }, "Last 15 days"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: "30"
-  }, "Last 30 days"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_chart_widget__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  }, "Last 30 days"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, isLoading ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "rc-loading"
+  }, " Loading ... ") : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_chart_widget__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    data: data
+  })));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
@@ -65,43 +138,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const data = [{
-  name: "Page A",
-  uv: 4000,
-  pv: 2400,
-  amt: 2400
-}, {
-  name: "Page B",
-  uv: 3000,
-  pv: 1398,
-  amt: 2210
-}, {
-  name: "Page C",
-  uv: 2000,
-  pv: 9800,
-  amt: 2290
-}, {
-  name: "Page D",
-  uv: 2780,
-  pv: 3908,
-  amt: 2000
-}, {
-  name: "Page E",
-  uv: 1890,
-  pv: 4800,
-  amt: 2181
-}, {
-  name: "Page F",
-  uv: 2390,
-  pv: 3800,
-  amt: 2500
-}, {
-  name: "Page G",
-  uv: 3490,
-  pv: 4300,
-  amt: 2100
-}];
-function ChartWidget() {
+function ChartWidget({
+  data
+}) {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "chart-widget"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(recharts__WEBPACK_IMPORTED_MODULE_2__.LineChart, {
@@ -117,10 +156,10 @@ function ChartWidget() {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(recharts__WEBPACK_IMPORTED_MODULE_3__.CartesianGrid, {
     strokeDasharray: "3 3"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(recharts__WEBPACK_IMPORTED_MODULE_4__.XAxis, {
-    dataKey: "name"
+    dataKey: "day"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(recharts__WEBPACK_IMPORTED_MODULE_5__.YAxis, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(recharts__WEBPACK_IMPORTED_MODULE_6__.Tooltip, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(recharts__WEBPACK_IMPORTED_MODULE_7__.Legend, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(recharts__WEBPACK_IMPORTED_MODULE_8__.Line, {
     type: "monotone",
-    dataKey: "uv",
+    dataKey: "setScore",
     stroke: "#82ca9d"
   })));
 }
