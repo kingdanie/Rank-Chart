@@ -19,6 +19,7 @@
  * @subpackage Rank_Chart/includes
  * @author     Danie D'mola
  */
+
 class Rank_Chart_Activator {
 
 	/**

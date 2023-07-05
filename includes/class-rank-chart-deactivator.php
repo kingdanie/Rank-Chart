@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin deactivation
  *
@@ -20,6 +19,7 @@
  * @subpackage Rank_Chart/includes
  * @author     Danie D'mola
  */
+
 class Rank_Chart_Deactivator {
 
 	/**
@@ -38,7 +38,7 @@ class Rank_Chart_Deactivator {
         $this->table_activator = $activator;
     }
 
-	
+
     public function deactivate() {
 
 	    global $wpdb;
