@@ -5,4 +5,12 @@ h1 {
     color: red;
 }
 
+
+.cr-chart-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
 /*# sourceMappingURL=index.css.map*/

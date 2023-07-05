@@ -36,6 +36,7 @@ class ChartRankPlugin {
     public function __construct() {
         add_action('admin_enqueue_scripts', array($this, 'rankchart_admin_enqueue_scripts'));
         add_action('wp_dashboard_setup', array($this, 'rank_chart_add_dashboard_widget'));
+        add_action( 'rest_api_init', array($this, 'rank_chart_custom_endpoint' ));
     }
 
 
@@ -54,6 +55,33 @@ class ChartRankPlugin {
     public function rankchart_admin_widget() {
         require_once CR_PLUGIN_DIR . '/templates/app.php';
     }
+
+    public function rank_chart_custom_endpoint() {
+        register_rest_route( 'cr-plugin/v1', '/data', array(
+            'methods' => 'GET',
+            'callback' => array( $this, 'rank_chart_get_data' ),
+  ) );
+    }
+
+    public function rank_chart_get_data( $request ) {
+        $duration = $request->get_param('days');
+        $data_url = CR_PLUGIN_DIR . 'data.php';
+
+        //fetch the data from the data file
+        $response = wp_remote_get($data_url);
+
+        if( is_wp_error( $response ) ) {
+            return rest_ensure_response(array());
+        }
+
+        $data = json_decode( wp_remote_retrieve_body($response), true);
+
+        //Filter the data based on the selected duration
+        $filtered_data = array_slice( $data, 0, $duration );
+
+        return rest_ensure_response( $filtered_data );
+    }
+    
 
 }
 
