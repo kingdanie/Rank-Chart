@@ -9,7 +9,7 @@
  * Domain Path:     /languages
  * Version:         0.1.0
  *
- * @package         Rankchart
+ * @package         Rank_chart
  */
 
 //if this file is accessed directly, abort!!

@@ -40,9 +40,11 @@ class Rank_Chart_Deactivator {
     public function deactivate() {
 
 	    global $wpdb;
+		$table_name = $this->table_activator->wp_rank_chart_tbl();
+		$sql = "DROP TABLE IF EXISTS $table_name";
 	        //drop tables when plugin uninstalls
 
-        $wpdb->query("DROP TABLE IF EXISTS" . $this->table_activator->wp_rank_chart_tbl() );
+        $wpdb->query($sql);
 
 	}
 
