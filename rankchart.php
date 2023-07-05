@@ -12,18 +12,18 @@
  * @package         Rank_chart
  */
 
-//if this file is accessed directly, abort!!
-defined('ABSPATH') or die('Unauthorized Access');
+// if this file is accessed directly, abort!!
+defined( 'ABSPATH' ) || die( 'Unauthorized Access' );
 
-//define constants
-define('CR_PLUGIN-VERSION', '0.1.0');
-define('CR_PLUGIN_TABLE_NAME', 'rank_chart_data');
-define('CR_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
-define('CR_PLUGIN_BUILD_DIR', CR_PLUGIN_DIR . 'build/' );
+//define constants.
+define( 'CR_PLUGIN-VERSION', '0.1.0' );
+define( 'CR_PLUGIN_TABLE_NAME', 'rank_chart_data' );
+define( 'CR_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
+define( 'CR_PLUGIN_BUILD_DIR', CR_PLUGIN_DIR . 'build/' );
 
 
 
-// Include the activator and deactivator classes
+// Include the activator and deactivator classes.
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rank-chart-activator.php';
     require_once plugin_dir_path( __FILE__ ) . 'includes/class-rank-chart-plugin.php';
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rank-chart-deactivator.php';

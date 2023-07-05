@@ -60,8 +60,8 @@ class Rank_Chart_Activator {
             PRIMARY KEY (id)
         ) $charset_collate;";
 
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        dbDelta($sql);
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+        dbDelta( $sql );
     }
 
 
@@ -72,7 +72,7 @@ class Rank_Chart_Activator {
         global $wpdb;
 
         $table_name = $this->wp_rank_chart_tbl();
-        $data = [
+        $data = array(
             [
                 'day' => '1',
                 'setScore' => 4000,
@@ -197,10 +197,10 @@ class Rank_Chart_Activator {
                 'day' => '31',
                 'setScore' => 4000,
             ]
-        ];
+        );
 
-        foreach ($data as $row) {
-            $wpdb->insert($table_name, $row);
+        foreach ( $data as $row ) {
+            $wpdb->insert( $table_name, $row );
         }
     }
 

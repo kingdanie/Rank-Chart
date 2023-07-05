@@ -32,7 +32,7 @@ class Rank_Chart_Deactivator {
 
 	private $table_activator;
 
-	public function __construct($activator)
+	public function __construct( $activator )
     {
         $this->table_activator = $activator;
     }
@@ -44,7 +44,7 @@ class Rank_Chart_Deactivator {
 		$sql = "DROP TABLE IF EXISTS $table_name";
 	        //drop tables when plugin uninstalls
 
-        $wpdb->query($sql);
+        $wpdb->query( $sql );
 
 	}
 
