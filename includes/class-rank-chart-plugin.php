@@ -34,14 +34,12 @@ class Rank_Chart_Plugin {
         return self::$instance;
     }
 
+    
     public function __construct() {
         add_action( 'admin_enqueue_scripts', array( $this, 'rankchart_admin_enqueue_scripts' ) );
         add_action( 'wp_dashboard_setup', array( $this, 'rank_chart_add_dashboard_widget' ) );
         add_action( 'rest_api_init', array( $this, 'rank_chart_custom_endpoint' ) );
     }
-
-
-
 
 
     public function rankchart_admin_enqueue_scripts() {
@@ -76,6 +74,7 @@ class Rank_Chart_Plugin {
         require_once CR_PLUGIN_DIR . '/templates/app.php';
     }
 
+    
     public function rank_chart_custom_endpoint() {
         register_rest_route( 'cr-plugin/v1', '/data', array(
             'methods' => 'GET',
@@ -83,6 +82,7 @@ class Rank_Chart_Plugin {
         ) );
     }
 
+    
     public function rank_chart_get_data( $request ) {
 
          global $wpdb;

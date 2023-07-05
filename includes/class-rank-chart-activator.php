@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin activation
  *
@@ -30,25 +29,22 @@ class Rank_Chart_Activator {
 	 * @since    1.0.0
 	 */
 	public function activate() {
-
-	    global $wpdb;
-
-	    if($wpdb->get_var("SHOW tables like '".$this->wp_rank_chart_tbl()."'") != $this->wp_rank_chart_tbl()){
-
+        global $wpdb;
+        
+        if($wpdb->get_var( "SHOW tables like '".$this->wp_rank_chart_tbl()."'" ) != $this->wp_rank_chart_tbl()){
             $this->create_table();
             $this->insert_data();
-
         }
 
 	}
 
 
-       /**
+    /**
      * Create the table.
      */
     private function create_table() {
         global $wpdb;
-
+        
         $table_name = $this->wp_rank_chart_tbl();
         $charset_collate = $wpdb->get_charset_collate();
 
@@ -59,7 +55,7 @@ class Rank_Chart_Activator {
             created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
             PRIMARY KEY (id)
         ) $charset_collate;";
-
+        
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
         dbDelta( $sql );
     }
@@ -70,7 +66,7 @@ class Rank_Chart_Activator {
      */
     private function insert_data() {
         global $wpdb;
-
+        
         $table_name = $this->wp_rank_chart_tbl();
         $data = array(
             [
@@ -203,8 +199,6 @@ class Rank_Chart_Activator {
             $wpdb->insert( $table_name, $row );
         }
     }
-
-
 
 
     public function wp_rank_chart_tbl(){

@@ -32,11 +32,13 @@ class Rank_Chart_Deactivator {
 
 	private $table_activator;
 
+
 	public function __construct( $activator )
     {
         $this->table_activator = $activator;
     }
 
+	
     public function deactivate() {
 
 	    global $wpdb;
