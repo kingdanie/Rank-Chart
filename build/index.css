@@ -1,16 +1,1 @@
-/*!******************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./src/main.css ***!
-  \******************************************************************************************************************************************************************/
-h1 {
-    color: red;
-}
-
-
-.cr-chart-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-/*# sourceMappingURL=index.css.map*/
+.rc-chart-heading{align-items:center;display:flex;justify-content:space-between;margin-bottom:30px}#chart-widget-app{background-color:#ededed;min-height:300px;padding:10px}.rc-heading{justify-content:space-between;margin-bottom:30px}.rc-heading,.rc-loading{align-items:center;display:flex}.rc-loading{justify-content:space-around;min-height:300px}

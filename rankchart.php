@@ -4,7 +4,7 @@
  * Plugin URI:      https://github.com/kingdanie
  * Description:     Plugin that displays daily SEO charts on the Wordpress dashboard
  * Author:          Danie D'mola
- * Author URI:       https://github.com/kingdanie
+ * Author URI:      https://github.com/kingdanie
  * Text Domain:     rankchart
  * Domain Path:     /languages
  * Version:         0.1.0

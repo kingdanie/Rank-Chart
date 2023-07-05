@@ -3,4 +3,4 @@ import App from "./App";
 import "./main.css";
 
 
-render(<App />, document.getElementById("chartwidget-app"));
+render(<App />, document.getElementById("chart-widget-app"));

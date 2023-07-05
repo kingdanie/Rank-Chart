@@ -1,11 +1,29 @@
-h1 {
-    color: red;
-}
-
-
-.cr-chart-heading {
+.rc-chart-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+}
+
+
+#chart-widget-app {
+    background-color: #ededed;
+    padding: 10px;
+    min-height: 300px;
+}
+
+.rc-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+
+.rc-loading {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }

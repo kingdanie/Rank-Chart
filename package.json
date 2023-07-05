@@ -2,7 +2,7 @@
   "name": "rankchart",
   "version": "0.1.0",
   "main": "index.js",
-  "author": "YOUR NAME HERE",
+  "author": "Danie D'mola",
   "scripts": {
     "start": "grunt default",
     "build": "wp-scripts build",
