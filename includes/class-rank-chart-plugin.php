@@ -53,6 +53,22 @@ class Rank_Chart_Plugin {
 
     public function rank_chart_add_dashboard_widget() {
         wp_add_dashboard_widget('rankchart_dashboard_widget', 'Rank Chart Scores', array($this, 'rankchart_admin_widget'));
+
+        // Globalize the metaboxes array, this holds all the widgets for wp-admin
+        global $wp_meta_boxes;
+
+        // Get the regular dashboard widgets array with our new widget appearing at the very end
+        $normal_dashboard = $wp_meta_boxes['dashboard']['normal']['core'];
+
+        // Backup and delete our new dashboard widget from the end of the array
+        $rank_chart_widget_backup = array('rank_chart_dashboard_widget' => $normal_dashboard['rank_chart_dashboard_widget']);
+        unset($normal_dashboard['rank_chart_dashboard_widget']);
+
+        // Merge the two arrays together so our widget is at the beginning
+        $sorted_dashboard = array_merge($rank_chart_widget_backup, $normal_dashboard);
+
+        // Save the sorted array back into the original metaboxes
+        $wp_meta_boxes['dashboard']['normal']['core'] = $sorted_dashboard;
     }
 
 
