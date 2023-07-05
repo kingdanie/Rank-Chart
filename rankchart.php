@@ -13,11 +13,12 @@
  */
 
 //if this file is accessed directly, abort!!
-define('ASBPATH') or die('Unauthorized Access');
+defined('ABSPATH') or die('Unauthorized Access');
 
 //define constants
 define('CR_PLUGIN-VERSION', '0.1.0');
-define('CR_PLUGIN_DIR', plugin_dir_url( _FILE__ ));
+define('CR_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
+define('CR_PLUGIN_BUILD_DIR', CR_PLUGIN_DIR . 'build/' );
 
 
 class ChartRankPlugin {
@@ -33,9 +34,27 @@ class ChartRankPlugin {
     }
 
     public function __construct() {
-        
+        add_action('admin_enqueue_scripts', array($this, 'rankchart_admin_enqueue_scripts'));
+        add_action('wp_dashboard_setup', array($this, 'rank_chart_add_dashboard_widget'));
     }
 
 
-    
+    public function rankchart_admin_enqueue_scripts() {
+        wp_enqueue_style( 'cr-plugin-style', CR_PLUGIN_BUILD_DIR . 'index.css');
+        wp_enqueue_script( 'cr-plugin-script', CR_PLUGIN_BUILD_DIR . 'index.js', array('wp-element'), '0.1.0', true);
+
+    }
+
+
+    public function rank_chart_add_dashboard_widget() {
+        wp_add_dashboard_widget('rankchart_dashboard_widget', 'Rank Chart Scores', array($this, 'rankchart_admin_widget'));
+    }
+
+
+    public function rankchart_admin_widget() {
+        require_once CR_PLUGIN_DIR . '/templates/app.php';
+    }
+
 }
+
+ChartRankPlugin::get_instance();
