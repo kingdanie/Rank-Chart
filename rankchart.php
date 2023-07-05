@@ -20,6 +20,33 @@ define('CR_PLUGIN-VERSION', '0.1.0');
 define('CR_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
 define('CR_PLUGIN_BUILD_DIR', CR_PLUGIN_DIR . 'build/' );
 
+/**
+ * The code that runs during plugin activation.
+ * This action is documented in includes/class-rank-chart-activator.php
+ */
+function activate_rank_chart_plugin() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rank-chart-activator.php';
+	$activator = new Rank_Chart_Activator();
+	$activator->activate();
+}
+
+/**
+ * The code that runs during plugin deactivation.
+ * This action is documented in includes/class-rank-chart-deactivator.php
+ */
+function deactivate_rank_chart_plugin() {
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-rank-chart-activator.php';
+    $activator = new Rank_Chart_Activator();
+
+
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rank-chart-deactivator.php';
+    $deactivator = new Rank_Chart_Deactivator($activator);
+	$deactivator->deactivate();
+}
+
+register_activation_hook( __FILE__, 'activate_rank_chart_plugin' );
+register_deactivation_hook( __FILE__, 'deactivate_rank_chart_plugin' );
+
 
 class ChartRankPlugin {
 
