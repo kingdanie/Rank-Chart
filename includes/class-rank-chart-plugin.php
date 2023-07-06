@@ -48,7 +48,7 @@ class Rank_Chart_Plugin {
 
 
     public function rank_chart_add_dashboard_widget() {
-        wp_add_dashboard_widget( 'rankchart_dashboard_widget', 'Rank Chart Scores', array( $this, 'rankchart_admin_widget' ) );
+        wp_add_dashboard_widget( 'rank_chart_dashboard_widget', 'Rank Chart Scores', array( $this, 'rank_chart_admin_widget' ) );
 
         // Globalize the metaboxes array, this holds all the widgets for wp-admin
         global $wp_meta_boxes;
@@ -68,7 +68,7 @@ class Rank_Chart_Plugin {
     }
 
 
-    public function rankchart_admin_widget() {
+    public function rank_chart_admin_widget() {
         require_once __DIR__ . '/templates/app.php';
     }
 
