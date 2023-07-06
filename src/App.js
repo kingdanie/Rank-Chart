@@ -11,7 +11,7 @@ function App() {
 		try {
 			
 			const response = await fetch(
-				`/rankchart/wp-json/cr-plugin/v1/data?days=${chartDuration}`
+				`/wp-json/cr-plugin/v1/data?days=${chartDuration}`
 			);
 			const data = await response.json();
 			setData(data);
