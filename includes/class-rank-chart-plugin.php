@@ -69,7 +69,7 @@ class Rank_Chart_Plugin {
 
 
     public function rankchart_admin_widget() {
-        require_once CR_PLUGIN_DIR . '/templates/app.php';
+        require_once __DIR__ . '/templates/app.php';
     }
 
     
