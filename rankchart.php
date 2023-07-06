@@ -12,47 +12,51 @@
  * @package         Rank_chart
  */
 
-	// if this file is accessed directly, abort!!
-	defined( 'ABSPATH' ) || die( 'Unauthorized Access' );
+/**
+ * Bootstrap the plugin.
+ */
+require_once 'vendor/autoload.php';
+// if this file is accessed directly, abort!!
+defined( 'ABSPATH' ) || die( 'Unauthorized Access' );
 
-	// define constants.
-	define( 'CR_PLUGIN-VERSION', '0.1.0' );
-	define( 'CR_PLUGIN_TABLE_NAME', 'rank_chart_data' );
-	define( 'CR_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
-	define( 'CR_PLUGIN_BUILD_DIR', CR_PLUGIN_DIR . 'build/' );
-
-
-
-	// Include the activator and deactivator classes.
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rank-chart-activator.php';
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rank-chart-plugin.php';
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rank-chart-deactivator.php';
+// define constants.
+define( 'CR_PLUGIN-VERSION', '0.1.0' );
+define( 'CR_PLUGIN_TABLE_NAME', 'rank_chart_data' );
+define( 'CR_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
+define( 'CR_PLUGIN_BUILD_DIR', CR_PLUGIN_DIR . 'build/' );
 
 
 
-	/**
-	 * The code that runs during plugin activation.
-	 * This action is documented in includes/class-rank-chart-activator.php
-	 */
-	function activate_rank_chart_plugin() {
-		$activator = new Rank_Chart_Activator();
-		$activator->activate();
-	}
-
-
-	/**
-	 * The code that runs during plugin deactivation.
-	 * This action is documented in includes/class-rank-chart-deactivator.php
-	 */
-	function deactivate_rank_chart_plugin() {
-		$activator = new Rank_Chart_Activator();
-		$deactivator = new Rank_Chart_Deactivator( $activator );
-		$deactivator->deactivate();
-	}
-
-	register_activation_hook( __FILE__, 'activate_rank_chart_plugin' );
-	register_deactivation_hook( __FILE__, 'deactivate_rank_chart_plugin' );
+// Include the activator and deactivator classes.
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-rank-chart-activator.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-rank-chart-plugin.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-rank-chart-deactivator.php';
 
 
 
-	Rank_Chart_Plugin::get_instance();
+/**
+ * The code that runs during plugin activation.
+ * This action is documented in includes/class-rank-chart-activator.php
+ */
+function activate_rank_chart_plugin() {
+	$activator = new Rank_Chart_Activator();
+	$activator->activate();
+}
+
+
+/**
+ * The code that runs during plugin deactivation.
+ * This action is documented in includes/class-rank-chart-deactivator.php
+ */
+function deactivate_rank_chart_plugin() {
+	$activator = new Rank_Chart_Activator();
+	$deactivator = new Rank_Chart_Deactivator( $activator );
+	$deactivator->deactivate();
+}
+
+register_activation_hook( __FILE__, 'activate_rank_chart_plugin' );
+register_deactivation_hook( __FILE__, 'deactivate_rank_chart_plugin' );
+
+
+
+Rank_Chart_Plugin::get_instance();
