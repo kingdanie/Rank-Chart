@@ -12,10 +12,6 @@
  * @package         Rank_chart
  */
 
-/**
- * Bootstrap the plugin.
- */
-require_once 'vendor/autoload.php';
 // if this file is accessed directly, abort!!
 defined( 'ABSPATH' ) || die( 'Unauthorized Access' );
 
